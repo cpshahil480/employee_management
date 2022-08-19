@@ -1,5 +1,5 @@
 from django.contrib import admin
-from twitterblog.models import UserProfile
-admin.site.register(UserProfile)
+from employee.models import Employee
+admin.site.register(Employee)
 
 # Register your models here.

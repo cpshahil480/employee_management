@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'test_database',
         'USER': 'admin',
         'PASSWORD': 'crazyfour',
-        'HOST': 'localhost',
+        'HOST': 'database-1.cwiskavz0zi3.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
