@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="card mb-3 mt-5 ms-5 text-bg-light" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{employee.image.url}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title ms-3">{{employee.employee_name}}</h5>
+          <hr>
+          <ul>
+              <li><strong>EMAIL :</strong>{{employee.email}}</li>
+              <li><strong>PASSWORD :</strong>{{employee.password}}</li>
+              <li><strong>PHONE :</strong>{{employee.phone}}</li>
+              <li><strong>ADDRESS :</strong>{{employee.address}}</li>
+          </ul>
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+
+
+
+{%endblock%}
