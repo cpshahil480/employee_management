@@ -14,7 +14,7 @@
     </tr>
     </thead>
 
-{%for emp in employee%}
+    {%for emp in employee%}
     <tbody>
 
     <tr>
@@ -27,14 +27,13 @@
         <td>
             <a href="{%url 'emp-view' emp.id %}">view</a>
             <a href="{%url 'emp-edit' emp.id%}">edit</a>
-            <a href="">delete</a>
+            <a href="{%url 'emp-remove' emp.id%}">delete</a>
         </td>
     </tr>
 
     </tbody>
     {%endfor%}
 </table>
-
 
 
 {%endblock%}

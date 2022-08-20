@@ -49,19 +49,23 @@ class LogInView(FormView):
                 return render(request,self.template_name,{"form":form})
 
 @method_decorator(sign_required,name="dispatch")
-class EmployeeCreateView(CreateView):
-    form_class = EmployeeRegistrationForm
-    template_name = "employeeregisteration.html"
-    model = Employee
-    success_url = reverse_lazy("emp-list")
+class EmployeeCreateView(View):
+    def get(self,request,*args,**kwargs):
+        form=EmployeeRegistrationForm()
+        return render(request,"employeeregisteration.html",{"form":form})
+    def post(self,request,*args,**kwargs):
+        form=EmployeeRegistrationForm(request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"phone details successfully added")
+            return redirect("emp-list")
+        else:
+            messages.error(request,"phone details adding failed")
+            return render(request, "employeeregisteration.html")
 
 
 
-    def form_valid(self, form):
-        form.instance.user=self.request.user
-        messages.success(self.request,"profile has been created")
-        self.object = form.save()
-        return super().form_valid(form)
+
 
 @method_decorator(sign_required,name="dispatch")
 class EmployeeListView(View):
@@ -79,6 +83,7 @@ class EmployeeDetailView(View):
         employee=Employee.objects.get(id=id)
         return render(request,"details.html",{"employee":employee})
 
+
 @method_decorator(sign_required,name="dispatch")
 class EmployeeEditView(UpdateView):
     model = Employee
@@ -87,6 +92,13 @@ class EmployeeEditView(UpdateView):
     success_url = reverse_lazy("emp-list")
     pk_url_kwarg = "emp_id"
 
+@sign_required
+def removeview(request,*args,**kwargs):
+    id=kwargs.get("emp_id")
+    phone = Employee.objects.get(id=id)
+    phone.delete()
+    messages.success(request,"successfully deleted")
+    return redirect("emp-list")
 
 @sign_required
 def signout(request,*args,**kwargs):

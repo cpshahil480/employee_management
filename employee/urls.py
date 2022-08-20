@@ -10,6 +10,7 @@ urlpatterns=[
     path("base",views.BaseView.as_view(),name="emp-base"),
     path("user/detail/<str:emp_id>",views.EmployeeDetailView.as_view(),name="emp-view"),
     path("user/edit/<str:emp_id>",views.EmployeeEditView.as_view(),name="emp-edit"),
+    path("user/remove/<str:emp_id>",views.removeview,name="emp-remove"),
     path("account/signout",views.signout,name="sign-out")
 
 ]
